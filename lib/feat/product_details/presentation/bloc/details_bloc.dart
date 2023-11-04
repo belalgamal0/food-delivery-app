@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery/features/product_details/data/food_details_model.dart';
 import '../../../../core/failure/failure.dart';
+import '../../data/food_details_model.dart';
 import '../../domain/usecase/load_details_usecase.dart';
 import 'details_states.dart';
 
@@ -12,33 +10,16 @@ import 'details_event.dart';
 class DetailsBloc extends Bloc<DetailsEvent, DetailsState> {
   final LoadDetailsUseCase loadDetails;
 
-
   DetailsBloc(this.loadDetails) : super(const DetailsState.initial()) {
     on<LoadDetailsEvent>(_loadDetails);
-
   }
-  void _loadDetails(
-      LoadDetailsEvent event, Emitter<DetailsState> emit) async {
+  void _loadDetails(LoadDetailsEvent event, Emitter<DetailsState> emit) async {
     emit(DetailsState.loading());
-     final modelOrError = await loadDetails(event.id);
-    _eitherLoadedOrErrorState(modelOrError,emit);
-    //  emit(result);
-  //  _loadedCategories = await getCategories();
-    // emit(DetailsState.loaded());
-
-
-    // emit(CategorySelectedState());
+    final modelOrError = await loadDetails(event.id);
+    _eitherLoadedOrErrorState(modelOrError, emit);
   }
-  //    _eitherLoadedOrErrorState(
-  //   Either<Failure, FoodDetailsModel> failureOrTrivia, Emitter<DetailsState> emit
-  // ) async* {
-  //   log("this will be called");
-  //   yield failureOrTrivia.fold(
-  //     (failure) => DetailsState.error(_mapFailureToMessage(failure)),
-  //     (trivia) => emit(),
-  //   );
-  // }
-    _eitherLoadedOrErrorState(Either<Failure, FoodDetailsModel> failureOrFoodList,
+
+  _eitherLoadedOrErrorState(Either<Failure, FoodDetailsModel> failureOrFoodList,
       Emitter<DetailsState> emit) async {
     failureOrFoodList.fold(
       (l) => emit(DetailsState.error(_mapFailureToMessage(l))),
