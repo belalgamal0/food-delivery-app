@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../features/master/presentation/pages/master_page.dart';
-import '../../features/product_details/presentation/pages/food_details_page.dart';
-import '../../features/home/domain/entity/food.dart';
+
+import '../../feat/master/presentation/pages/master_page.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

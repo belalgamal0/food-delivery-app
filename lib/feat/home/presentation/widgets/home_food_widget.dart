@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import '../../../../core/api_provider/utils.dart';
-import '../../../product_details/presentation/pages/food_details_page.dart';
+import '../../../favorites/presentation/bloc/favorite_bloc.dart';
+import '../../../favorites/presentation/bloc/favorite_event.dart';
+import '../../../favorites/presentation/bloc/favorite_state.dart';
 import '../../data/model/food_model.dart';
 import '../bloc/home_bloc.dart';
 import 'add_button_widget.dart';
@@ -10,9 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../basket/presentation/bloc/basket_bloc.dart';
 import '../../../basket/presentation/bloc/basket_event.dart';
-import '../../../favorite/presentation/bloc/favorite_bloc.dart';
-import '../../../favorite/presentation/bloc/favorite_event.dart';
-import '../../../favorite/presentation/bloc/favorite_state.dart';
 import 'circular_image_widget.dart';
 
 class HomeFoodWidget extends StatelessWidget {
@@ -32,9 +31,7 @@ class HomeFoodWidget extends StatelessWidget {
           GestureDetector(
             child: CircularImage(imageUr: foodModel.imageUrl.toString()),
             onTap: () {
-              Navigator.of(context).push(CupertinoPageRoute(
-                builder: (context) => DetailsPage(recipe: foodModel),
-              ));
+           
             },
           ),
           const SizedBox(width: 15),
