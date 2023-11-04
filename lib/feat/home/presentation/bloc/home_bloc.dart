@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../categories/domain/entity/category.dart';
+import '../../../favorites/presentation/bloc/favorite_state.dart';
 import '../../domain/usecase/get_foods_usecase.dart';
 import '../../../categories/domain/usecase/get_categories_usecase.dart';
-import '../../../favorite/presentation/bloc/favorite_state.dart';
 import '../../data/model/food_model.dart';
 import 'home_events.dart';
 import 'home_states.dart';
