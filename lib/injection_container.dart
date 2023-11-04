@@ -1,4 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:food_delivery/feat/product_details/data/data_source/details_data_source.dart';
+import 'package:food_delivery/feat/product_details/data/repository/details_repository_impl.dart';
+import 'package:food_delivery/feat/product_details/domain/repository/details_repository.dart';
+import 'package:food_delivery/feat/product_details/domain/usecase/load_details_usecase.dart';
+import 'package:food_delivery/feat/product_details/presentation/bloc/details_bloc.dart';
 import 'feat/basket/presentation/bloc/basket_bloc.dart';
 import 'feat/categories/data/repository/categories_repository_impl.dart';
 import 'feat/categories/domain/repository/categories_repository.dart';
@@ -18,7 +23,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:hive/hive.dart';
 import 'package:get_it/get_it.dart';
 import 'core/network/network_info.dart';
-
+import 'package:http/http.dart' as http;
 final services = GetIt.instance;
 Future<void> init() async {
   //! Features: Get foods - Set favorite - Add to basket
@@ -33,18 +38,24 @@ Future<void> init() async {
   services.registerFactory(
     () => FavoriteBloc(services(), services()),
   );
+    services.registerFactory(
+    () => DetailsBloc(services()),
+  );
 
   // Use cases
   services.registerLazySingleton(() => GetFoodsUseCase(services()));
   services.registerLazySingleton(() => GetCategories(services()));
   services.registerLazySingleton(() => FavoritesFoodUseCase(services()));
   services.registerLazySingleton(() => IsCachedUseCase(services()));
+  services.registerLazySingleton(() => LoadDetailsUseCase(services()));
 
   // Repository
   services.registerLazySingleton<FoodRepository>(
     () => FoodRepositoryImpl(networkInfo: services(), remoteDataSource: services()),
   );
-
+  services.registerLazySingleton<DetailsRepository>(
+    () => DetailsRepositoryImpl(services()),
+  );
     services.registerLazySingleton<CategoriesRepository>(
     () => CategoriesRepositoryImpl(),
   );
@@ -57,6 +68,9 @@ Future<void> init() async {
   services.registerLazySingleton<FoodRemoteDataSource>(
     () => FoodRemoteDataSourceImpl(client: services()),
   );
+    services.registerLazySingleton<DetailsRemoteDataSource>(
+    () => DetailsRemoteDataSourceImpl(client: services()),
+  );
   services.registerLazySingleton<FavoritesLocalDataSource>(
     () => FavoritesLocalDataSourceImpl(hive: services()),
   );
@@ -68,5 +82,6 @@ Future<void> init() async {
   //! External
   services.registerLazySingleton<HiveInterface>(() => Hive);
   services.registerLazySingleton(() => Dio());
+  services.registerLazySingleton(() => http.Client());
   services.registerLazySingleton(() => InternetConnectionChecker());
 }

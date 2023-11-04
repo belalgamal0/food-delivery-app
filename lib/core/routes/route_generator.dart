@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../feat/product_details/data/food_details_model.dart';
+import '../../feat/home/data/model/food_model.dart';
 import '../../feat/master/presentation/pages/master_page.dart';
 import '../../feat/product_details/presentation/pages/food_details_page.dart';
 
