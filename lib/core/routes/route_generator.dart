@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import '../../feat/product_details/data/food_details_model.dart';
 import '../../feat/master/presentation/pages/master_page.dart';
+import '../../feat/product_details/presentation/pages/food_details_page.dart';
+
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -9,21 +11,21 @@ class RouteGenerator {
       case '/':
         return MaterialPageRoute(builder: (_) => const MasterPage());
       case '/foodDetailsPage':
-        // if (args is Food) {
-        //   return MaterialPageRoute(
-        //     // builder: (_) => FoodDetailsPage(
-        //     //   foodEntity: args,
-        //     // ),
-        //   );
+        if (args is Recipe) {
+          return MaterialPageRoute(
+            builder: (_) => FoodDetailsPage(
+              recipe: args
+            ),
+          );
         }
-        // return _errorRoute();
-      // default:
+        return _errorRoute();
+      default:
         // If there is no such named route in the switch statement, e.g. /third
         return _errorRoute();
     }
   }
 
-   Route<dynamic> _errorRoute() {
+  static Route<dynamic> _errorRoute() {
     return MaterialPageRoute(
       builder: (_) {
         return Scaffold(
@@ -36,5 +38,5 @@ class RouteGenerator {
         );
       },
     );
-  // }
+  }
 }

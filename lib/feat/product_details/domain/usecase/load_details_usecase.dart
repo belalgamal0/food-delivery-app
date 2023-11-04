@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:food_delivery/features/product_details/data/food_details_model.dart';
-
 import '../../../../core/failure/failure.dart';
+import '../../data/food_details_model.dart';
 import '../repository/details_repository.dart';
 
 class LoadDetailsUseCase{

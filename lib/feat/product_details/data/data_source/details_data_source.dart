@@ -28,9 +28,7 @@ class DetailsRemoteDataSourceImpl implements DetailsRemoteDataSource{
                   'Accept': 'application/json',
                 },
               ));
-log(response.statusCode.toString());
     if (response.statusCode == 200) {
-      // List jsonResponse = json.decode(response.body);
       FoodDetailsModel foodDetailsModel = FoodDetailsModel.fromJson(response.data);
       return foodDetailsModel;
     } else {

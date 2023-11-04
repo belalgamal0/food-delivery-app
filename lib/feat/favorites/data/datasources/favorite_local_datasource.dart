@@ -35,16 +35,12 @@ class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
   }
 
   Future<void> addItemToCache(String item, String boxName) async {
-    log("cailled from cache");
     final openBox = await openHiveBox(boxName);
     openBox.put(item, true);
-    log(openBox.keys.toString());
-
   }
 
   @override
   isCached(String item, String boxName) async {
-    log("this is cached will be called");
     final openBox = await openHiveBox(boxName);
     return openBox.containsKey(item);
   }

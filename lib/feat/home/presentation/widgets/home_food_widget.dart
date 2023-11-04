@@ -31,7 +31,7 @@ class HomeFoodWidget extends StatelessWidget {
           GestureDetector(
             child: CircularImage(imageUr: foodModel.imageUrl.toString()),
             onTap: () {
-           
+             Navigator.of(context).pushNamed('/foodDetailsPage', arguments: foodModel);
             },
           ),
           const SizedBox(width: 15),
