@@ -10,8 +10,11 @@ class IngredientsWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: List.generate(
         ingredients!.length,
-        (index) => Text(
-          ingredients![index].toString(),
+        (index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5),
+          child: Text(
+            ingredients![index].toString(),
+          ),
         ),
       ),
     );
