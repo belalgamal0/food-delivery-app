@@ -12,7 +12,8 @@ But keep in mind there is some drawback with flutter where the native platform i
 
 As for the Food Delivery app, it's based on clean architecture based on the book and blog by Uncle Bob. It is a combination of concepts taken from Onion Architecture and other architectures. The main focus of the architecture is the separation of concerns and scalability. It consists of 3 main modules: App, Domain, and Data.</br>
 This diagram shows the architecture and the call flow.</br>
-0_zUtZYiJ1bDTugOYY (1)
+![0_zUtZYiJ1bDTugOYY](https://github.com/belalgamal0/food-delivery-app/assets/32741765/72799912-2cb0-4b96-8936-9e66b9dbd1ce)
+
 Source code dependencies only point inwards. This means inward modules are neither aware of nor dependent on external modules. However, external modules are both aware of and dependent on inner modules. Outer modules represent the mechanisms by which the business rules and policies (inner modules) operate. The more you move inward, the more abstraction is present. The outer you move the more concrete implementations are present. Inner modules are not aware of any classes, functions, names, libraries, etc.. present in the outer modules. They simply represent rules and are completely independent of the implementations.
 features of the app, like getting food, will be divided into 3 layers(if required) - presentation, domain, and data.</br>
 
@@ -33,6 +34,16 @@ The Either type can be used to represent any two types at the same time, hence i
 the other half of the data layer is the local data layer which can be noticed in "favorite feature" as favorite data is cached locally to be saved even if the app the killed, and the approach used is "Hive" as</br>
 1- It greatly outperforms SQLite and SharedPreferences when it comes to writing or deleting.</br>
 2- The hive contains strong encryption built in which makes it more secure.</br>
+
+Solution drawbacks:</br>
+1-Complexity, Implementing Clean Architecture can add complexity, especially in smaller projects where the overhead might not be justified. It requires a clear understanding and discipline to maintain the separation of concerns and layers.</br>
+2-Over-Engineering, There's a risk of over-engineering the solution, especially if the project is relatively simple or the team lacks sufficient experience in Clean Architecture. Over-compartmentalization can hinder development speed and unnecessarily complicate the codebase.</br>
+3-Boilerplate Code, Clean Architecture might lead to more boilerplate code due to the need for multiple layers and abstractions, which can increase development time and maintenance overhead.</br>
+4-Team Adaptation, A team must fully embrace the principles of Clean Architecture for it to work effectively. Resistance or partial adoption might lead to a hybrid approach, resulting in confusion and inconsistencies.</br>
+5-Maintenance Challenges, Maintaining a Clean Architecture system might be more challenging when it comes to making changes or adding new features, especially if the initial architecture was not well thought out.</br>
+
+
+
 
 
 If I have time I would make some improvements such as:</br>
