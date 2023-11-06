@@ -21,10 +21,16 @@ Presentation layer</br>
 This layer contains widgets to display UI on the screen. These widgets then dispatch events to the Bloc and listen for states to be able to update UI.</br>
 
 Domain layer</br>
-is the inner layer. It will contain only the core business logic (use cases) and business objects (entities). It's independent of every other layer. Use Cases are classes that encapsulate all the business logic of a particular use case of the app (GetFoodUseCase). And the way that the domain gets data from a Repository, which is from the data layer is accomplished with dependency inversion which is managed in this app using get_it.</br>
-"get_it" is a simple Service Locator for Dart and Flutter inspired by Splat and it is used in this app for</br>
-1- It's extremely fast as it runs in a constant time (O(1))</br>
-2- It doesn't clutter the UI tree with special widgets to access the data</br>
+is the inner layer. It will contain only the core business logic (use cases) and business objects (entities). It's independent of every other layer. Use Cases are classes that encapsulate all the business logic of a particular use case of the app (GetFoodUseCase). And the way that the domain gets data from a Repository, which is from the data layer is accomplished with dependency inversion which is managed in this app using injectable.</br>
+"injectable" is a simple Service Locator for Dart and Flutter inspired by get_it and it is used in this app for</br>
+1-Code Generation</br>
+injectable uses code generation, which can be more efficient and provides compile-time safety. This helps in detecting errors early in the development process.
+With injectable, the generation of code happens at build time, reducing the overhead during runtime.</br>
+2-Simplicity and Readability:</br>
+The use of annotations in injectable can make the code more concise and readable compared to the manual registration process in get_it.</br>
+3-Testability:</br>
+injectable can enhance testability due to its generated code, making it easier to mock or replace dependencies during testing.</br>
+While injectable has these advantages, get_it might still be a suitable choice for smaller projects or cases where the additional features and complexity of injectable might not be necessary. get_it is also a mature and widely-used package in the Flutter community, offering flexibility and a variety of functionalities.</br>
 
 Data layer</br>
 the data layer consists of a Repository implementation (the contract comes from the domain layer) and data sources - one is for getting remote (API) data and the other for caching that data, unlike domain the data layer works with Models, not Entities Therefore, there is a Model class that extends Entity and adds some specific functionality (toJson, fromJson) or additional fields. The RemoteDataSource will perform HTTP GET requests on the Food API.</br>
