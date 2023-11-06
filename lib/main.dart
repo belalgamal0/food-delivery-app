@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'feat/basket/presentation/bloc/basket_bloc.dart';
 import 'core/routes/route_generator.dart';
 import 'core/theme/app_color_theme.dart';
@@ -11,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await Hive.initFlutter();
-  await di.init();
+  await di.configureDependencies();
   runApp(const FoodApp());
 }
 
@@ -21,7 +22,7 @@ class FoodApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (context) => di.services<BasketBloc>())],
+      providers: [BlocProvider(create: (context) => GetIt.instance.get<BasketBloc>())],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Food Delivery',

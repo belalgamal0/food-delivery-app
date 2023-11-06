@@ -20,7 +20,7 @@ class Recipe {
     String? sourceUrl;
     String? recipeId;
     String? imageUrl;
-    int? socialRank;
+    num? socialRank;
     String? publisherUrl;
     String? title;
 

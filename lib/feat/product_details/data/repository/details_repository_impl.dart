@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import '../../../../core/failure/failure.dart';
 import '../../../../core/failure/exception.dart';
 import '../../domain/repository/details_repository.dart';
 import '../data_source/details_data_source.dart';
 import '../model/food_details_model.dart';
-
+@Injectable(as: DetailsRepository) 
 class DetailsRepositoryImpl implements DetailsRepository{
   final DetailsRemoteDataSource remoteDatasource;
   DetailsRepositoryImpl(this.remoteDatasource);

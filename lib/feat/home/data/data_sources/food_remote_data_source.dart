@@ -1,3 +1,5 @@
+import 'package:injectable/injectable.dart';
+
 import '../../../../core/api_provider/api_provider.dart';
 import '../../../../core/api_provider/utils.dart';
 import '../../../../core/failure/exception.dart';
@@ -7,7 +9,7 @@ import 'package:dio/dio.dart';
 abstract class FoodRemoteDataSource {
   Future<FoodModel> getfoods(String category);
 }
-
+@Injectable(as: FoodRemoteDataSource)
 class FoodRemoteDataSourceImpl implements FoodRemoteDataSource {
   final Dio client;
 

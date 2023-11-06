@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import '../../domain/repository/favorite_repository.dart';
 import '../../../../core/failure/exception.dart';
 import '../../../../core/failure/failure.dart';
 import '../datasources/favorite_local_datasource.dart';
-
+@Injectable(as: FavoriteRepository)
 class FavoriteRepositoryImpl implements FavoriteRepository {
   final FavoritesLocalDataSource favoritesLocalDataSource;
   FavoriteRepositoryImpl({required this.favoritesLocalDataSource});
@@ -22,9 +23,9 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
   Future<Either<Failure, void>> _getCachedFavorites(
       String foodName, String boxName) async {
     try {
-      final localTrivia =
+      final localFacorites =
           await favoritesLocalDataSource.cacheFavorites(foodName, boxName);
-      return Right(localTrivia);
+      return Right(localFacorites);
     } on CacheException {
       return Left(CacheFailure());
     }

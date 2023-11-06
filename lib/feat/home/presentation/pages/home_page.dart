@@ -1,8 +1,8 @@
 
+import 'package:get_it/get_it.dart';
 import '../widgets/loading_widget.dart';
 import '../bloc/home_states.dart';
 import '../widgets/category_widget.dart';
-import 'package:food_delivery/injection_container.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/home_bloc.dart';
@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (_) => di.services<HomeBloc>()..add(GetCategoriesEvent()),
+        create: (_) => GetIt.instance.get<HomeBloc>()..add(GetCategoriesEvent()),
         child: BlocBuilder<HomeBloc, HomeState>(
           buildWhen: (previous, current) => previous != current,
           builder: (context, state) {

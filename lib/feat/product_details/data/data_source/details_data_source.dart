@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:injectable/injectable.dart';
 
 import '../../../../core/api_provider/api_provider.dart';
 import '../../../../core/api_provider/utils.dart';
@@ -11,6 +12,8 @@ import 'package:http/http.dart' as http;
 abstract class DetailsRemoteDataSource {
     Future<FoodDetailsModel> getfoodDetails(String id);
 }
+@Injectable(as: DetailsRemoteDataSource) 
+
 class DetailsRemoteDataSourceImpl implements DetailsRemoteDataSource{
     final http.Client client;
   const DetailsRemoteDataSourceImpl({required this.client});
