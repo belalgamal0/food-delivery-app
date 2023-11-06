@@ -2,12 +2,13 @@
 import 'dart:developer';
 
 import 'package:hive/hive.dart';
+import 'package:injectable/injectable.dart';
 
 abstract class FavoritesLocalDataSource {
   Future<void> cacheFavorites(String item, String boxName);
   Future<bool> isCached(String item, String boxName);
 }
-
+@Injectable(as: FavoritesLocalDataSource)
 class FavoritesLocalDataSourceImpl implements FavoritesLocalDataSource {
   final HiveInterface hive;
 

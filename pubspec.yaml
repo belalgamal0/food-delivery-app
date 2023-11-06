@@ -23,8 +23,10 @@ dependencies:
   cached_network_image: ^3.2.2
   mockito: ^5.3.2
   dio: ^5.3.3
+  injectable: ^2.3.2
 
 dev_dependencies:
+  injectable_generator:  
   build_runner: ^2.2.1
   flutter_test:
     sdk: flutter

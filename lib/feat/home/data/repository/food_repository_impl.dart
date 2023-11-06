@@ -1,12 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:injectable/injectable.dart';
 import '../../../../core/failure/exception.dart';
 import '../../../../core/failure/failure.dart';
 import '../../../../core/network/network_info.dart';
-import '../../domain/entity/food.dart';
 import '../../domain/repository/food_repository.dart';
 import '../data_sources/food_remote_data_source.dart';
 import '../model/food_model.dart';
-
+@Injectable(as: FoodRepository) 
 class FoodRepositoryImpl implements FoodRepository {
   final NetworkInfo networkInfo;
   final FoodRemoteDataSource remoteDataSource;

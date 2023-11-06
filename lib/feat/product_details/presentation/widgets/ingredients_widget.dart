@@ -6,15 +6,12 @@ class IngredientsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: List.generate(
-        ingredients!.length,
-        (index) => Padding(
-          padding: const EdgeInsets.symmetric(vertical: 5),
-          child: Text(
-            ingredients![index].toString(),
-          ),
+    return Expanded(
+      child: ListView.builder(
+        itemCount: ingredients!.length,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          child: Text(ingredients![index].toString()),
         ),
       ),
     );

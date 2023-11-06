@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:get_it/get_it.dart';
 import '../../../../core/api_provider/utils.dart';
 import '../../../favorites/presentation/bloc/favorite_bloc.dart';
 import '../../../favorites/presentation/bloc/favorite_event.dart';
@@ -7,7 +7,6 @@ import '../../data/model/food_model.dart';
 import '../bloc/home_bloc.dart';
 import 'add_button_widget.dart';
 import '../../../../core/theme/app_color_theme.dart';
-import '../../../../injection_container.dart' as di;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../basket/presentation/bloc/basket_bloc.dart';
@@ -52,7 +51,7 @@ class HomeFoodWidget extends StatelessWidget {
           ),
           const Spacer(),
           BlocProvider(
-            create: (_) => di.services<FavoriteBloc>()
+            create: (_) => GetIt.instance.get<FavoriteBloc>()
               ..add(CheckFavoriteFoodEvent(
                   foodKey: foodModel.title!, boxName: "cache")),
             child: BlocBuilder<FavoriteBloc, FavoriteState>(

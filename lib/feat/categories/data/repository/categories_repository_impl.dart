@@ -1,6 +1,7 @@
+import 'package:injectable/injectable.dart';
 import '../../domain/entity/category.dart';
 import '../../domain/repository/categories_repository.dart';
-
+@Injectable(as: CategoriesRepository) 
 class CategoriesRepositoryImpl implements CategoriesRepository {
    List<Category> categories = [
     const Category(id: 0, name: "pizza"),
