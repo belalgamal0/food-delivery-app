@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/failure/failure.dart';
-import '../../data/food_details_model.dart';
+import '../../data/model/food_details_model.dart';
 import '../repository/details_repository.dart';
 
 class LoadDetailsUseCase{

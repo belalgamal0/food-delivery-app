@@ -1,30 +1,37 @@
-// import 'package:food_delivery/features/home/data/model/food_model.dart';
-
+import 'package:equatable/equatable.dart';
 import '../../data/model/food_model.dart';
-import '../../domain/entity/food.dart';
-import 'home_bloc.dart';
-
-abstract class HomeState {}
-class HomeInitalState extends HomeState {}
-class FoodLoadingState extends HomeState {}
-class FoodCategoriesLoadingState extends HomeState {}
-class FoodCategoriesSuccessState extends HomeState {}
-class CategorySelectingState extends HomeState {}
-
-class CategorySelectedState extends HomeState {}
-class FoodLoadedState extends HomeState {
-  final FoodModel foodModel;
-  FoodLoadedState({required this.foodModel});
-  List<Object> get props => [foodModel];
-}
-class FoodLoadedSccessState extends HomeState {
-  final FoodModel foodModel;
-  FoodLoadedSccessState({required this.foodModel});
-  List<Object> get props => [foodModel];
+enum HomeStatus {
+  initial,
+  loadingCategories,
+  loadedCategories,
+  selectingCategory,
+  selectedCategory,
+  loadingFood,
+  loadedFood,
+  error
 }
 
-class FoodsErrorState extends HomeState {
-  final String message;
-  FoodsErrorState({required this.message});
-  List<Object> get props => [message];
+class HomeState extends Equatable {
+  const HomeState._({
+    this.status = HomeStatus.initial,
+    this.foodModel,
+    this.errorMessage,
+  });
+
+  const HomeState.initial() : this._();
+  const HomeState.loadingCategories() : this._(status: HomeStatus.loadingCategories);
+  const HomeState.loadedCategories() : this._(status: HomeStatus.loadedCategories);
+  const HomeState.selectingCategory() : this._(status: HomeStatus.selectingCategory);
+  const HomeState.selectedCategory() : this._(status: HomeStatus.selectedCategory);
+  const HomeState.loadingFood() : this._(status: HomeStatus.loadingFood);
+  const HomeState.loadedFood(FoodModel foodModel)
+      : this._(status: HomeStatus.loadedFood, foodModel: foodModel);
+  const HomeState.error(String errorMessage)
+      : this._(status: HomeStatus.error, errorMessage: errorMessage);
+  final HomeStatus status;
+  final FoodModel? foodModel;
+  final String? errorMessage;
+
+  @override
+  List<Object?> get props => [status, foodModel, errorMessage];
 }

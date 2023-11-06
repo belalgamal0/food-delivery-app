@@ -6,7 +6,7 @@ import 'package:dio/dio.dart';
 import '../../../../core/api_provider/api_provider.dart';
 import '../../../../core/api_provider/utils.dart';
 import '../../../../core/failure/exception.dart';
-import '../food_details_model.dart';
+import '../model/food_details_model.dart';
 import 'package:http/http.dart' as http;
 abstract class DetailsRemoteDataSource {
     Future<FoodDetailsModel> getfoodDetails(String id);

@@ -1,4 +1,5 @@
 
+import '../widgets/loading_widget.dart';
 import '../bloc/home_states.dart';
 import '../widgets/category_widget.dart';
 import 'package:food_delivery/injection_container.dart' as di;
@@ -44,14 +45,14 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: 15),
                   Builder(builder: (context) {
-                    if(state is FoodLoadingState){
-                      return const Center(child: CircularProgressIndicator.adaptive(),);
-                    }else if (state is FoodLoadedState){
-                      return Expanded(flex: 15,child: ListView.builder(itemCount: state.foodModel.recipes!.length,itemBuilder: (context, index) => 
-                   HomeFoodWidget(foodModel: state.foodModel.recipes![index],foodCategory: BlocProvider.of<HomeBloc>(context).loadedCategories[BlocProvider.of<HomeBloc>(context).selectedCategoryIndex!].name),
+                    if(state.status == HomeStatus.loadingFood){
+                      return const LoadingWidget();
+                    }else if (state.status == HomeStatus.loadedFood){
+                      return Expanded(flex: 15,child: ListView.builder(itemCount: state.foodModel!.recipes!.length,itemBuilder: (context, index) => 
+                   HomeFoodWidget(foodModel: state.foodModel!.recipes![index],foodCategory: BlocProvider.of<HomeBloc>(context).loadedCategories[BlocProvider.of<HomeBloc>(context).selectedCategoryIndex!].name),
                    ) );
                     }else {
-                      return const Center(child: Text("please select category"));
+                      return const Center(child: Text("Please select category"));
                     }
                   },),
                 ],

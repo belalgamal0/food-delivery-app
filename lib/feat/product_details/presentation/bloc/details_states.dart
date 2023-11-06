@@ -1,33 +1,5 @@
-// import 'package:equatable/equatable.dart';
-// import 'package:food_delivery/features/product_details/data/food_details_model.dart';
-
-// enum DetailsStatus { initial,loading, loadedSuccessfully, error }
-
-
-// class AuthenticationState extends Equatable {
-//   const AuthenticationState._({
-//     this.status = DetailsStatus.initial,
-//      required this.foodDetailsModel
-//     // this.foodDetailsModel= FoodDetailsModel();
-//     // this.user = User.empty,
-//   });
-//   // const AuthenticationState.unknown() : this._();
-
-//   const AuthenticationState.authenticated(FoodDetailsModel user)
-//       : this._(status: DetailsStatus.loadedSuccessfully, foodDetailsModel: user);
-
-//   // const AuthenticationState.unauthenticated()
-//   //     : this._(status: AuthenticationStatus.unauthenticated);
-
-//   final DetailsStatus status;
-//   final FoodDetailsModel foodDetailsModel;
-
-//   @override
-//   List<Object> get props => [status, foodDetailsModel];
-// }
 import 'package:equatable/equatable.dart';
-
-import '../../data/food_details_model.dart';
+import '../../data/model/food_details_model.dart';
 
 enum DetailsStatus {
   initial,

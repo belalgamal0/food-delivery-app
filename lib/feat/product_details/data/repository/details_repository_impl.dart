@@ -3,7 +3,7 @@ import '../../../../core/failure/failure.dart';
 import '../../../../core/failure/exception.dart';
 import '../../domain/repository/details_repository.dart';
 import '../data_source/details_data_source.dart';
-import '../food_details_model.dart';
+import '../model/food_details_model.dart';
 
 class DetailsRepositoryImpl implements DetailsRepository{
   final DetailsRemoteDataSource remoteDatasource;

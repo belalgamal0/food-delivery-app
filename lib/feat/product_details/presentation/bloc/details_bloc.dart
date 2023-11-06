@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import '../../../../core/failure/failure.dart';
-import '../../data/food_details_model.dart';
+import '../../data/model/food_details_model.dart';
 import '../../domain/usecase/load_details_usecase.dart';
 import 'details_states.dart';
 
