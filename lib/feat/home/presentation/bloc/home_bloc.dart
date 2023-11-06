@@ -13,7 +13,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetFoodsUseCase getFoodsUseCase;
   final GetCategories getCategories;
   HomeBloc(this.getFoodsUseCase, this.getCategories)
-      : super(HomeInitalState()) {
+      : super(const HomeState.initial()) {
     on<GetCategoriesEvent>(_loadCategories);
     on<LoadFoodEvent>(_onLoadFood);
     on<SelectCategoryEvent>(_onSelectCategory);
@@ -25,22 +25,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   void _loadCategories(
       GetCategoriesEvent event, Emitter<HomeState> emit) async {
-    emit(FoodCategoriesLoadingState());
+        
+    emit(const HomeState.loadingCategories());
     _loadedCategories = await getCategories();
-    emit(FoodCategoriesSuccessState());
-
-    emit(CategorySelectedState());
+    emit(const HomeState.loadedCategories());
   }
 
   void _onSelectCategory(
       SelectCategoryEvent event, Emitter<HomeState> emit) async {
-    emit(CategorySelectingState());
+    emit(const HomeState.selectingCategory());
     selectedCategoryIndex = event.categoryIndex;
-    emit(CategorySelectedState());
+    emit(const HomeState.selectedCategory());
   }
 
   void _onLoadFood(LoadFoodEvent event, Emitter<HomeState> emit) async {
-    emit(FoodLoadingState());
+    emit(const HomeState.loadingFood());
     final getFoodFeedback = await getFoodsUseCase(event.categoryName);
     _eitherLoadedOrErrorState(getFoodFeedback, emit);
   }
@@ -49,8 +48,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       Emitter<HomeState> emit) async {
     failureOrFoodList.fold(
       (l) => emit(
-          FoodsErrorState(message: "Failed to load data, Please try again!")),
-      (foodList) => emit(FoodLoadedState(foodModel: foodList)),
+          const HomeState.error("Failed to load data, Please try again!")),
+      (foodList) => emit(HomeState.loadedFood(foodList)),
     );
   }
 
